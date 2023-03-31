@@ -121,13 +121,13 @@ export const Navbar = ({ account, loginWithSafeAuthKit, disconnectWallet }) => {
               </Button>
 
               <Button>
-                <Link className={styles.whiteLink} href="/">
+                <Link className={styles.whiteLink} href="/profile">
                   Profile
                 </Link>
               </Button>
 
               <Button>
-                <Link className={styles.whiteLink} href="/">
+                <Link className={styles.whiteLink} href="/createprofile">
                   Create
                 </Link>
               </Button>
