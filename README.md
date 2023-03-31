@@ -1,3 +1,41 @@
+
+# Alread added
+ - safe
+ 1. Auth Kit
+ 2. OnramopKit
+ 3. Relay Kit
+We are using the Relay Kit  & 1Balance to cover all gas costs and fees for any relay call, regardless of the underlying chain.
+
+A user could request relay calls on Ethereum mainnet, and Gelato will query their 1Balance to see if they possess enough equivalent USDC to cover the costs for this call.  If the balance is sufficient, Gelato will go ahead and relay the message on-chain.
+To see the balance
+https://relay.gelato.network/balance
+
+
+ - stripe for demo purposes use this information https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk/onramp-kit
+
+# I need to add
+- base: baseDeployedContract: 0x9221bde96f1EdD09716253380C8ba15C2F7d00a2 for details: https://docs.base.org/using-base
+Network Name	Base Goerli
+RPC Endpoint	https://goerli.base.org
+Chain ID	84531
+Currency Symbol	ETH
+Block Explorer	https://goerli.basescan.org/
+
+
+- Gnosis Chain baseDeployedContract
+
+- Integrate Gelato’s Gasless Wallet SDK for smooth onboarding & UX
+    -
+
+
+
+- Best use of Superfluid and NFTs
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

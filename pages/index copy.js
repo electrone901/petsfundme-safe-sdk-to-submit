@@ -1,34 +1,23 @@
+import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState, useContext } from 'react'
+import { useState } from 'react'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/HomeGallery.module.css'
+import styles from '@/styles/Home.module.css'
 import ABI_GELATO from '../abis/ABI_CONTRACT.json'
-import ProfileList from '../components/home-container/gallery/profile-list/ProfileList'
-import { Grid, Container, Card, Button } from '@mui/material'
+
 const inter = Inter({ subsets: ['latin'] })
 import { SafeAuthKit, SafeAuthProviderType } from '@safe-global/auth-kit'
-import { SafeOnRampKit, SafeOnRampProviderType } from '@safe-global/onramp-kit'
 import { ethers } from 'ethers'
-import { MyAppContext } from '../pages/_app'
 
 export default function Home() {
-  const {
-    account,
-    setAccount,
-    contract,
-    setContract,
-    selectedProfile,
-    setSelectedProfile,
-    data,
-    setData,
-  } = useContext(MyAppContext)
-
-  console.log('🚀 ~ file: index.js:25 ~ Home ~ data:', data)
   const GELATO_CONTRACT = '0x1aae17D2C4B5ea1b6cf4eeFC0D2f54bc5cD464cf'
+  const [currentAccount, setCurrentAccount] = useState('')
   const [contractGelato, setContractGelato] = useState(null)
+  const [data, setData] = useState([])
 
   const donateNow = async (event) => {
     event.preventDefault()
+
     const selectedProfile = {}
     const donationAmmount = 3
     selectedProfile.fundraiserId = 0
@@ -99,9 +88,10 @@ export default function Home() {
   }
 
   const getFundraisers = async (contract) => {
-    console.log('what is the contract contract:', contract)
     const temp = []
     const res = await contract.getAllFundraisers()
+    console.log('🚀 ~ file: index.js:78 ~ getFundraisers ~ res:', res)
+    console.log(' res:', res)
     for (let i = 0; i < res.length; i++) {
       let obj = {}
       // data from smart contract
@@ -130,104 +120,120 @@ export default function Home() {
       obj.creationDate = data.creationDate
       temp.push(obj)
     }
+
     setData(temp)
   }
 
-  useEffect(() => {
-    if (contract) {
-      getFundraisers(contract)
-    }
-  }, [contract])
   return (
-    <div
-      style={{
-        minHeight: '70vh',
-        paddingBottom: '4rem',
-        paddingTop: '.5rem',
-      }}
-    >
-      <Container>
-        <Container>
-          <div className={styles.root}>
-            <Grid
-              container
-              spacing={3}
-              style={{
-                paddingTop: '1rem',
-                paddingBottom: '1rem',
-              }}
+    <>
+
+      <main className={styles.main}>
+        <button onClick={loginSafeAuthKit}>Login with SAFE</button>
+        <button onClick={donateNow}>donate Now</button>
+
+        <div className={styles.description}>
+          <p>
+            Get started by editing&nbsp;
+            <code className={styles.code}>pages/index.js</code>
+          </p>
+          <div>
+            <a
+              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Grid item xs={5} className={styles.outer}>
-                <img
-                  src="/logo.png"
-                  className={styles.logoHero}
-                  alt="logo-hero"
-                />
-              </Grid>
-              <Grid item xs={7}>
-                <p className={styles.homeTextIntro}>
-                  <strong>PetsFoundMe</strong> is a social app built by the
-                  community for everyone who loves and supports pets.
-                  PetsFoundMe is an NFT platform where pet owners and pet lovers
-                  come together and help each other to solve their pet's needs
-                  from expensive surgeries to food supplies or free services.
-                </p>{' '}
-                <br />
-                <p className={styles.home2TextIntro}>
-                  PetsFoundMe is the perfect pet hub for nonprofits, medical &
-                  government institutions, influencers, and artists to come
-                  together to solve the needs of the Community Pets. Come to ask
-                  for financial support, as questions, answer questions, and
-                  give or receive donations. Come join us to make this planet a
-                  better world.
-                </p>
-              </Grid>
-            </Grid>
+              By{' '}
+              <Image
+                src="/vercel.svg"
+                alt="Vercel Logo"
+                className={styles.vercelLogo}
+                width={100}
+                height={24}
+                priority
+              />
+            </a>
           </div>
-        </Container>
+        </div>
 
-        {/* search */}
-        <form className={styles.searchForm}>
-          <div className={styles.pseudoSearch}>
-            <input
-              type="text"
-              placeholder="Search for people, etc"
-              autoFocus
-              required
+        <div className={styles.center}>
+          <Image
+            className={styles.logo}
+            src="/next.svg"
+            alt="Next.js Logo"
+            width={180}
+            height={37}
+            priority
+          />
+          <div className={styles.thirteen}>
+            <Image
+              src="/thirteen.svg"
+              alt="13"
+              width={40}
+              height={31}
+              priority
             />
-            <span className={styles.searchClear}>Clear</span>
-            <span className={styles.searchIcon}>🔍</span>
           </div>
-        </form>
+        </div>
 
-        <br />
-        <Card
-          style={{
-            borderRadius: '24px',
-            paddingTop: '1rem',
-            paddingBottom: '1rem',
-            backgroundColor: '#fff9f7',
-            minHeight: '20rem',
-          }}
-        >
-          {data.length ? (
-            <ProfileList setSelectedProfile={setSelectedProfile} data={data} />
-          ) : (
-            <div style={{ textAlign: 'center', paddingTop: '5rem' }}>
-              <Button
-                style={{
-                  backgroundColor: '#FF835B',
-                  color: 'white',
-                  padding: '1rem',
-                  borderRadius: '10px',
-                }}
-              >
-                Please connect your wallet to Mumbai Network
-              </Button>
-            </div>
-          )}
-        </Card>
-      </Container>
-    </div>
+        <div className={styles.grid}>
+          <a
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              Docs <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Find in-depth information about Next.js features and&nbsp;API.
+            </p>
+          </a>
+
+          <a
+            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              Learn <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Learn about Next.js in an interactive course with&nbsp;quizzes!
+            </p>
+          </a>
+
+          <a
+            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              Templates <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Discover and deploy boilerplate example Next.js&nbsp;projects.
+            </p>
+          </a>
+
+          <a
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2 className={inter.className}>
+              Deploy <span>-&gt;</span>
+            </h2>
+            <p className={inter.className}>
+              Instantly deploy your Next.js site to a shareable URL
+              with&nbsp;Vercel.
+            </p>
+          </a>
+        </div>
+      </main>
+    </>
   )
 }
