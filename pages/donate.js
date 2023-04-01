@@ -12,8 +12,8 @@ import {
   Grid,
 } from '@mui/material'
 import { MyAppContext } from '../pages/_app'
-// import { apiKeyport } from '../APIKEYPORT'
-// import { Framework } from '@superfluid-finance/sdk-core'
+import { apiKeyport } from '../APIKEYPORT'
+import { Framework } from '@superfluid-finance/sdk-core'
 const apiKeyport = ''
 function Donate({}) {
   const {
@@ -55,26 +55,26 @@ function Donate({}) {
     }
   }
 
-  // const streamPayment = async () => {
-  //   console.log('streamPayment, donationAmmount', typeof donationAmmount)
-  //   const sf = await Framework.create({
-  //     chainId: 80001, // you can also use chainId here instead
-  //     provider: provider,
-  //   })
-  //   const createFlowOperation = sf.cfaV1.createFlow({
-  //     sender: account,
-  //     receiver: selectedProfile
-  //       ? selectedProfile.organizer
-  //       : '0x7214859DD1750d31EDa889bA44d432f9805Ff3F7',
-  //     superToken: '0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f',
-  //     flowRate: donationAmmount, // pass it on, amountToSend /10**18
-  //   })
-  //   const txnResponse = await createFlowOperation.exec(signer)
-  //   const txnReceipt = await txnResponse.wait()
-  //   if (txnReceipt) {
-  //     setStreamConfirmation(txnReceipt)
-  //   }
-  // }
+  const streamPayment = async () => {
+    console.log('streamPayment, donationAmmount', typeof donationAmmount)
+    const sf = await Framework.create({
+      chainId: 80001, // you can also use chainId here instead
+      provider: provider,
+    })
+    const createFlowOperation = sf.cfaV1.createFlow({
+      sender: account,
+      receiver: selectedProfile
+        ? selectedProfile.organizer
+        : '0x7214859DD1750d31EDa889bA44d432f9805Ff3F7',
+      superToken: '0x5d8b4c2554aeb7e86f387b4d6c00ac33499ed01f',
+      flowRate: donationAmmount, // pass it on, amountToSend /10**18
+    })
+    const txnResponse = await createFlowOperation.exec(signer)
+    const txnReceipt = await txnResponse.wait()
+    if (txnReceipt) {
+      setStreamConfirmation(txnReceipt)
+    }
+  }
 
   const mintWithNFTPort = async (event) => {
     event.preventDefault()
