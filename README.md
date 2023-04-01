@@ -3,17 +3,27 @@
 - Gelato contract: https://goerli.etherscan.io/address/0x54C322e4D5803370E084f40447C740c86fb8FacB#code
 - GELATO_CONTRACT MUMBAI = '0xceE8EBe0C46ffF30787B1578fBD42E407bcB6D5C'
 
+### We Added
 
+- Web3Auth
+- The Safe SDK
 
-# We Added
-  # Web3Auth
-  # The  Safe SDK
- 1. Auth Kit to authenticated and onboard users
- 2. Onramp Kit to help the user getting started with funding their wallets stripe for demo purposes use this information https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk/onramp-kit
- 3. We are using the Relay Kit  & 1Balance to cover all gas costs and fees for any relay call, regardless of the underlying chain. A user could request relay calls on Ethereum mainnet, and Gelato will query their 1Balance to see if they possess enough equivalent USDC to cover the costs for this call.  If the balance is sufficient, Gelato will go ahead and relay the message on-chain. To see the balance https://relay.gelato.network/balance
+  1.  Auth Kit to authenticated and onboard users
+  2.  Onramp Kit to help the user getting started with funding their wallets stripe for demo purposes use this information https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk/onramp-kit
+  3.  We are using the Relay Kit & 1Balance to cover all gas costs and fees for any relay call, regardless of the underlying chain. A user could request relay calls on Ethereum mainnet, and Gelato will query their 1Balance to see if they possess enough equivalent USDC to cover the costs for this call. If the balance is sufficient, Gelato will go ahead and relay the message on-chain. To see the balance https://relay.gelato.network/balance
 
- # base: baseDeployedContract: `0x9221bde96f1EdD09716253380C8ba15C2F7d00a2` for details: https://docs.base.org/using-base
-# Superfluid and NFTs
+- Task Id Relay:
+  https://relay.gelato.digital/tasks/status/0x00f71c3fabc049bf530289c68652a1dc7ca957bdaa09be6c45977a5f0d55a3bf/
+
+- Task Id Mumbai:
+  https://mumbai.polygonscan.com/tx/0xb6479164975694d74ccd839dcd519920c836badd77c2c28087fee75fab31e913
+- Contract
+  https://mumbai.polygonscan.com/address/0x1aae17D2C4B5ea1b6cf4eeFC0D2f54bc5cD464cf
+
+- Base:
+  baseDeployedContract: `0x9221bde96f1EdD09716253380C8ba15C2F7d00a2` for details: https://docs.base.org/using-base
+
+- Superfluid and NFTs
 
 ## Inspiration
 
@@ -25,19 +35,17 @@ The inspiration came from volunteering to animal shelters, I have seem many pets
 
 PetsFundMe App supports underserved pets, rescue animals, and pets from low-income families. The idea is pretty simple: Pet owners list their needs we represent them as NFTs and users from all over the world can donate to a specific cause and get updates from their favorite pets. With the help of crowdfunding and additional resources, you'll be able to spend less time worrying about pet surgery costs and more time focusing on your pet's health.
 
-
-
 # Demo
 
 - sender: 0xB676DcbCc37571FB1205f5e03885110626DB0b43
 - receiver: 0x0f35507Fa1F080fA79C3bAEC783fa4317875D276
 - receiver2 0x11Afb8521CbF03C3508378E41d4C5b7e2C90b233
+
 # Gelato Source
 
 You can read the blog at: https://medium.com/@javier_donoso/gelato-v2-superfluid-eb13166ac414
 and see the walkthrough video: https://www.youtube.com/watch?v=OphQ2BdXJDQ&t=1s
 contracts live here https://remix.ethereum.org/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.4+commit.c7e474f2.js
-
 
 ## What it does
 
@@ -107,41 +115,34 @@ Post updates Upon registration, add a point system for users.
 - deployedSkaleContract ='0x1aae17D2C4B5ea1b6cf4eeFC0D2f54bc5cD464cf'
 
 # Alread added
- - safe
- 1. Auth Kit
- 2. OnramopKit
- 3. Relay Kit
-We are using the Relay Kit  & 1Balance to cover all gas costs and fees for any relay call, regardless of the underlying chain.
 
-A user could request relay calls on Ethereum mainnet, and Gelato will query their 1Balance to see if they possess enough equivalent USDC to cover the costs for this call.  If the balance is sufficient, Gelato will go ahead and relay the message on-chain.
+- safe
+
+1.  Auth Kit
+2.  OnramopKit
+3.  Relay Kit
+    We are using the Relay Kit & 1Balance to cover all gas costs and fees for any relay call, regardless of the underlying chain.
+
+A user could request relay calls on Ethereum mainnet, and Gelato will query their 1Balance to see if they possess enough equivalent USDC to cover the costs for this call. If the balance is sufficient, Gelato will go ahead and relay the message on-chain.
 To see the balance
 https://relay.gelato.network/balance
 
-
- - stripe for demo purposes use this information https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk/onramp-kit
+- stripe for demo purposes use this information https://docs.safe.global/learn/safe-core/safe-core-account-abstraction-sdk/onramp-kit
 
 # I need to add
+
 - base: baseDeployedContract: 0x9221bde96f1EdD09716253380C8ba15C2F7d00a2 for details: https://docs.base.org/using-base
-Network Name	Base Goerli
-RPC Endpoint	https://goerli.base.org
-Chain ID	84531
-Currency Symbol	ETH
-Block Explorer	https://goerli.basescan.org/
+  Network Name Base Goerli
+  RPC Endpoint https://goerli.base.org
+  Chain ID 84531
+  Currency Symbol ETH
+  Block Explorer https://goerli.basescan.org/
 
+* Gnosis Chain baseDeployedContract
 
-- Gnosis Chain baseDeployedContract
-
-- Integrate Gelato’s Gasless Wallet SDK for smooth onboarding & UX
-    -
-
-
+* Integrate Gelato’s Gasless Wallet SDK for smooth onboarding & UX -
 
 - Best use of Superfluid and NFTs
-
-
-
-
-
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
